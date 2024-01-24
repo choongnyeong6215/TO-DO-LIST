@@ -3,13 +3,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './styles/theme';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <ThemeProvider theme={lightTheme}>
-    <App />
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </ThemeProvider>
 );
 

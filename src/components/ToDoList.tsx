@@ -1,18 +1,25 @@
-import { Container, Header, Title, ToDoBox, ToDoIpt, ToDoAddBtn, ToDoUl, ToDoLi } from "../styles/ToDoListStyle";
+import { useRecoilValue } from "recoil";
+import { Container, Header, Title, ToDoUl, ToDoLi } from "../styles/ToDoListStyle";
+import { toDoState } from "../atom/toDoState";
+import CreateToDo from "./CreateToDo";
+import ToDo from "./ToDo";
 
 const ToDoList = () => {
+
+  // 리스트 상태 관리
+  const toDo = useRecoilValue(toDoState);
+
   return (
     <div>
       <Container>
         <Header>
             <Title>To Do List</Title>
         </Header>
-        <ToDoBox>
-            <ToDoIpt />
-            <ToDoAddBtn>제출</ToDoAddBtn>
-        </ToDoBox>
+        <CreateToDo />
         <ToDoUl>
-            <ToDoLi></ToDoLi>
+          {toDo.map((list) => (
+            <ToDo key={list.id} id={list.id} text={list.text} category={list.category} />
+          ))}
         </ToDoUl>
       </Container>
     </div>

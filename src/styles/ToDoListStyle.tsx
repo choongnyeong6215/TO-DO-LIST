@@ -17,9 +17,6 @@ export const Title = styled.h1`
 `;
 
 export const ToDoBox = styled.div`
-    display : flex;
-    justify-content : space-between;
-    align-items : top;
     margin-top : 2rem;
 `;
 
@@ -37,6 +34,7 @@ export const ToDoAddBtn = styled.button`
     background-color : ${(props) => props.theme.boxColor};
     cursor : pointer;
     color : ${(props) => props.theme.textColor};
+    margin-left : 1rem;
 `;
 
 export const ToDoUl = styled.ul`

@@ -7,7 +7,9 @@ import ToDo from "./ToDo";
 const ToDoList = () => {
 
   // 리스트 상태 관리
-  const toDo = useRecoilValue(toDoState);
+  const toDos = useRecoilValue(toDoState);
+
+  console.log(toDos);
 
   return (
     <div>
@@ -17,8 +19,8 @@ const ToDoList = () => {
         </Header>
         <CreateToDo />
         <ToDoUl>
-          {toDo.map((list) => (
-            <ToDo key={list.id} id={list.id} text={list.text} category={list.category} />
+          {toDos.map((toDo) => (
+            <ToDo key={toDo.id} id={toDo.id} text={toDo.text} category={toDo.category} />
           ))}
         </ToDoUl>
       </Container>

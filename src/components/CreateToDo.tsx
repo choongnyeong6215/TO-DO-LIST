@@ -8,11 +8,11 @@ const CreateToDo = () => {
 
     const {register, handleSubmit, setValue} = useForm<FormItfc>();
 
-    const setToDo = useSetRecoilState(toDoState);
+    const setToDos = useSetRecoilState(toDoState);
 
     // 유효한 경우 리스트 업데이트
     const isValid = ({toDo} : FormItfc) => {
-    setToDo((prevToDoList) => [{id : Date.now(), text : toDo, category : "TO_DO"}, ...prevToDoList]);
+    setToDos((prevToDoList) => [{id : Date.now(), text : toDo, category : "TO_DO"}, ...prevToDoList]);
     setValue("toDo", "");
     }
 

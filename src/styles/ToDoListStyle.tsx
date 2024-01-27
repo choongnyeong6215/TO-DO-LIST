@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width : 400px;
+    max-width : 500px;
     margin : 0 auto;
 `;
 
@@ -33,8 +33,7 @@ export const ToDoAddBtn = styled.button`
     border-radius : 1rem;
     background-color : ${(props) => props.theme.boxColor};
     cursor : pointer;
-    color : ${(props) => props.theme.textColor};
-    margin-left : 1rem;
+    color : ${(props) => props.theme.textColor};;
 `;
 
 export const ToDoUl = styled.ul`

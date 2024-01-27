@@ -16,11 +16,15 @@ const ToDo = ({id, text, category} : ToDoListItfc) => {
             // 과거 투두리스트
             const prevToDo = prevToDoList[toDoIndex];
             // 변경된 투두리스트
-            const newToDo = {id : id, text : text, category : e.currentTarget.name as ToDoListItfc["category"]};
+            const newToDo : ToDoListItfc = {
+                id : id,
+                text : text,
+                category : e.currentTarget.name as ToDoListItfc["category"]
+            };
 
             // 변경 내역 적용
             const updatedToDo = [...prevToDoList];
-            prevToDoList.splice(toDoIndex, 1, newToDo);
+            updatedToDo.splice(toDoIndex, 1, newToDo);
             
             return updatedToDo;
         }) 

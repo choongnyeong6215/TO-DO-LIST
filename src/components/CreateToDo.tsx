@@ -1,8 +1,8 @@
-import { ToDoBox, ToDoIpt, ToDoAddBtn } from "../styles/ToDoListStyle";
+import { ToDoBox, ToDoIpt, ToDoAddBtn, SelectBox } from "../styles/ToDoListStyle";
 import {useForm} from "react-hook-form";
 import { FormItfc, ToDoListItfc } from "../interface/toDointerface";
 import {  useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
-import { Categories, categoyState, toDoSelector, toDoState } from "../atom/toDoState";
+import { Categories, categoyState, toDoState } from "../atom/toDoState";
 
 const CreateToDo = () => {
 
@@ -30,18 +30,18 @@ const CreateToDo = () => {
 
     return (
         <ToDoBox>
-            <form onSubmit={handleSubmit(isValid)} style={{display : "flex", justifyContent : "space-between", gap : "0.5rem"}}>
+            <form onSubmit={handleSubmit(isValid)} style={{display:"flex", gap : "1rem"}}>
                 <ToDoIpt
                 type="text"
                 placeholder="오늘의 할 일을 기록해보세요!"
                 {...register("toDo")}
                 />
-                <select value={currentCateory} onInput={handleSelect}>
+                <SelectBox value={currentCateory} onInput={handleSelect}>
                     <option value={Categories.TO_DO}>할 일</option>
                     <option value={Categories.DOING} >진행중</option>
                     <option value={Categories.DONE}>완료</option>
-                </select>
-                <ToDoAddBtn>제출</ToDoAddBtn>
+                </SelectBox>
+                <ToDoAddBtn>추가</ToDoAddBtn>
             </form>
         </ToDoBox>
     )

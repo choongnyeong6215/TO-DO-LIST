@@ -14,26 +14,41 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
     font-size : 3rem;
+    color : #E6A4B4;
+    margin-top: 3rem;
 `;
 
 export const ToDoBox = styled.div`
-    margin-top : 2rem;
+    margin-top : 3rem;
+    display: flex;
 `;
 
 export const ToDoIpt = styled.input`
     border : none;
     padding : 1rem;
     border-radius : 1rem;
-    width : 80%;
+    width: 20rem;
+    padding: 1.5rem;
 `;
+export const ButtonContainer = styled.div``;
 
 export const ToDoAddBtn = styled.button`
     border : none;
-    padding : 1rem;
+    padding : 1rem 1.25rem;
     border-radius : 1rem;
     background-color : ${(props) => props.theme.boxColor};
     cursor : pointer;
     color : ${(props) => props.theme.textColor};;
+`;
+
+export const ToDoUpdateBtn = styled.button`
+    border : none;
+    padding : 1rem;
+    border-radius : 1rem;
+    background-color : transparent;
+    cursor : pointer;
+    font-weight: bold;
+    color : #E6A4B4;
 `;
 
 export const ToDoUl = styled.ul`
@@ -44,6 +59,17 @@ export const ToDoUl = styled.ul`
     border-radius : 1rem;
 `;
 
-export const ToDoLi = styled.li`
+export const ToDoLi = styled.div`
     border-radius : 1rem;
-`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem;
+`;
+
+export const SelectBox = styled.select`
+    border : none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+`;

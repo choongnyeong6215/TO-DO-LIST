@@ -40,3 +40,9 @@ export const toDoSelector = selector({
         return toDo.filter((todo) => todo.category === category);
     }
 });
+
+// 다크 모드
+export const isDarkMode = atom({
+    key : "isDark",
+    default : false
+})

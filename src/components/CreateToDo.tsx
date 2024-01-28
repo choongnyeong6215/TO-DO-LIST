@@ -1,4 +1,4 @@
-import { ToDoBox, ToDoIpt, ToDoAddBtn, SelectBox } from "../styles/ToDoListStyle";
+import { ToDoBox, ToDoIpt, ToDoAddBtn, CategoryBox, ToDoLabel, CategoryBtn, BorderLine } from "../styles/ToDoListStyle";
 import {useForm} from "react-hook-form";
 import { FormItfc, ToDoListItfc } from "../interface/toDointerface";
 import {  useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
@@ -16,7 +16,7 @@ const CreateToDo = () => {
     const [currentCateory, setCurrentCategory] = useRecoilState(categoyState);
 
     // 카테고리 추적
-    const handleSelect = (e : React.FormEvent<HTMLSelectElement>) => {
+    const handleSelect = (e : React.MouseEvent<HTMLButtonElement>) => {
         setCurrentCategory(e.currentTarget.value as any);
     }
     
@@ -29,21 +29,26 @@ const CreateToDo = () => {
     }
 
     return (
-        <ToDoBox>
-            <form onSubmit={handleSubmit(isValid)} style={{display:"flex", gap : "1rem"}}>
-                <ToDoIpt
-                type="text"
-                placeholder="오늘의 할 일을 기록해보세요!"
-                {...register("toDo")}
-                />
-                <SelectBox value={currentCateory} onInput={handleSelect}>
-                    <option value={Categories.TO_DO}>할 일</option>
-                    <option value={Categories.DOING} >진행중</option>
-                    <option value={Categories.DONE}>완료</option>
-                </SelectBox>
-                <ToDoAddBtn>추가</ToDoAddBtn>
-            </form>
-        </ToDoBox>
+        <>
+            <CategoryBox>
+                <CategoryBtn value={Categories.TO_DO} onClick={handleSelect} disabled={categoryState === Categories.TO_DO}>할 일</CategoryBtn>
+                <CategoryBtn value={Categories.DOING} onClick={handleSelect} disabled={categoryState === Categories.DOING}>진행중</CategoryBtn>
+                <CategoryBtn value={Categories.DONE} onClick={handleSelect} disabled={categoryState === Categories.DONE}>완료</CategoryBtn>
+            </CategoryBox>
+            <BorderLine />
+            <ToDoBox>
+                <form onSubmit={handleSubmit(isValid)}>
+                    <ToDoLabel>
+                    <ToDoIpt
+                    type="text"
+                    placeholder="오늘의 할 일을 기록해보세요!"
+                    {...register("toDo")}
+                    />
+                        <ToDoAddBtn>추가</ToDoAddBtn>
+                    </ToDoLabel>
+                </form>
+            </ToDoBox>
+        </>
     )
 }
 

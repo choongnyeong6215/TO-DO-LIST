@@ -5,5 +5,6 @@ declare module "styled-componetns" {
         bgColor : string;
         textColor : string;
         boxColor : string;
+        empTextColor : string
     }
 }

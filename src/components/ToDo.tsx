@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 import { ToDoListItfc } from "../interface/toDointerface";
-import { ToDoLi, ToDoUpdateBtn, ButtonContainer } from "../styles/ToDoListStyle";
+import { ToDoLi, ToDoUpdateBtn, ButtonContainer, ToDoTxtBox } from "../styles/ToDoListStyle";
 import { Categories, toDoState } from "../atom/toDoState";
 import { FaRegTrashAlt } from "react-icons/fa";
 
@@ -45,12 +45,13 @@ const ToDo = ({id, text, category} : ToDoListItfc) => {
 
     return (
         <ToDoLi>
-            <span>{text}</span>  
-            {/* 현재 카테고리에 적합한 버튼 렌더링 */}
+            <ToDoTxtBox>
+                <p>{text}</p>  
+            </ToDoTxtBox>
                 <ButtonContainer>
-                    {category !== Categories.TO_DO && <ToDoUpdateBtn name={Categories.TO_DO} onClick={handleChgCategory}>할 일</ToDoUpdateBtn>}
-                    {category !== Categories.DOING && <ToDoUpdateBtn name={Categories.DOING} onClick={handleChgCategory}>진행중</ToDoUpdateBtn>}
-                    {category !== Categories.DONE && <ToDoUpdateBtn name={Categories.DONE} onClick={handleChgCategory}>완료</ToDoUpdateBtn>}
+                    <ToDoUpdateBtn name={Categories.TO_DO} onClick={handleChgCategory} disabled={category === Categories.TO_DO}>할 일</ToDoUpdateBtn>
+                    <ToDoUpdateBtn name={Categories.DOING} onClick={handleChgCategory} disabled={category === Categories.DOING}>진행중</ToDoUpdateBtn>
+                    <ToDoUpdateBtn name={Categories.DONE} onClick={handleChgCategory} disabled={category === Categories.DONE}>완료</ToDoUpdateBtn>
                     <ToDoUpdateBtn name={Categories.DELETE} onClick={handleDelete}><FaRegTrashAlt /></ToDoUpdateBtn>
                 </ButtonContainer>
         </ToDoLi>

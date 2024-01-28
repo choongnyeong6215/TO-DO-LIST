@@ -1,17 +1,26 @@
 import { atom, selector } from "recoil";
 import { ToDoListItfc } from "../interface/toDointerface";
+import { recoilPersist } from "recoil-persist";
 
 // 카테고리 enum으로 전역에서 사용
 export enum Categories {
     "TO_DO" = "TO_DO",
     "DOING" = "DOING",
-    "DONE" = "DONE"
+    "DONE" = "DONE",
+    "DELETE" = "DELETE"
 }
+
+// 리스트 로컬 스토리지 저장
+const {persistAtom} = recoilPersist({
+    key : "SaveLocalStorage",
+    storage : localStorage
+});
 
 // 입력한 투두리스트 저장할 state
 export const toDoState = atom<ToDoListItfc[]>({
     key : "toDo",
-    default : []
+    default : [],
+    effects_UNSTABLE : [persistAtom]
 });
 
 // 카테고리 저장할 state

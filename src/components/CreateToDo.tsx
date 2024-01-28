@@ -24,6 +24,8 @@ const CreateToDo = () => {
     const isValid = ({toDo} : FormItfc) => {
     setToDos((prevToDoList) => [{id : Date.now(), text : toDo, category : categoryState as ToDoListItfc["category"]}, ...prevToDoList]);
     setValue("toDo", "");
+
+    // localStorage.setItem("toDoList", )
     }
 
     return (

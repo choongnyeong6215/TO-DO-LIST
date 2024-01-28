@@ -30,6 +30,18 @@ const ToDo = ({id, text, category} : ToDoListItfc) => {
         }) 
     };
 
+    // 리스트 삭제
+    const handleDelete = (e : React.MouseEvent<HTMLButtonElement>) => {
+        setToDos((prevToDoList) => {
+            const deleteListIndex = prevToDoList.findIndex((toDo) => toDo.id);
+
+            const updatedTodo = [...prevToDoList];
+            updatedTodo.splice(deleteListIndex, 1);
+
+            return updatedTodo;
+        })
+    }
+
     return (
         <ToDoLi>
             <span>{text}</span>  
@@ -37,6 +49,7 @@ const ToDo = ({id, text, category} : ToDoListItfc) => {
             {category !== Categories.TO_DO && <ToDoAddBtn name={Categories.TO_DO} onClick={handleChgCategory}>할 일</ToDoAddBtn>}
             {category !== Categories.DOING && <ToDoAddBtn name={Categories.DOING} onClick={handleChgCategory}>진행중</ToDoAddBtn>}
             {category !== Categories.DONE && <ToDoAddBtn name={Categories.DONE} onClick={handleChgCategory}>완료</ToDoAddBtn>}
+            <ToDoAddBtn name={Categories.DELETE} onClick={handleDelete}>삭제</ToDoAddBtn>
         </ToDoLi>
     )
 }

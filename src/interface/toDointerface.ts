@@ -1,3 +1,5 @@
+import { Categories } from "../atom/toDoState";
+
 // 폼 제출 데이터 인터페이스
 export interface FormItfc {
     toDo : string;
@@ -7,5 +9,5 @@ export interface FormItfc {
 export interface ToDoListItfc {
     id : number;
     text : String;
-    category : "TO_DO" | "DOING" | "DONE"       // 할 일 || 하는중 || 완료
+    category : Categories       // 할 일 || 하는중 || 완료
 }

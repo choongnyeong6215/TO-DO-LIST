@@ -9,8 +9,6 @@ const ToDoList = () => {
   // 카테고리 별로 구분해서 렌더링
   const ToDos = useRecoilValue(toDoSelector);
 
-  const currentCategory = useRecoilValue(categoyState);
-
   return (
     <div>
       <Container>
@@ -24,28 +22,6 @@ const ToDoList = () => {
             <ToDo key={toDo.id} id={toDo.id} text={toDo.text} category={toDo.category} />
           ))}
         </ToDoUl>
-        {/* {currentCategory === "TO_DO" ? (
-          <ToDoUl>
-          <h2>할 일</h2> 
-            {ToDos.map((toDo) => (
-              <ToDo key={toDo.id} id={toDo.id} text={toDo.text} category={toDo.category} />
-            ))}
-          </ToDoUl>
-        ) : (
-          <ToDoUl>
-            <h2>진행중</h2> 
-            {Doing.map((toDo) => (
-              <ToDo key={toDo.id} id={toDo.id} text={toDo.text} category={toDo.category} />
-            ))}
-          </ToDoUl>
-        ) : (
-          <ToDoUl>
-            <h2>완료</h2> 
-            {Done.map((toDo) => (
-              <ToDo key={toDo.id} id={toDo.id} text={toDo.text} category={toDo.category} />
-            ))}
-          </ToDoUl>
-        )} */}
       </Container>
     </div>
   )

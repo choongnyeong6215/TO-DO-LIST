@@ -58,7 +58,7 @@ export const ToDoIpt = styled.input`
     padding: 1.5rem;
 `;
 export const ButtonContainer = styled.div`
-    width: 80%;
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.3rem;
@@ -78,9 +78,14 @@ export const ToDoAddBtn = styled.button`
     height: 100%;
 `;
 
+export const ErrorMsg = styled.p`
+    padding: 1rem;
+    color: red;
+`;
+
 export const ToDoUpdateBtn = styled.button`
     border : none;
-    padding : 0.75rem;
+    padding : 0.75rem 0.5rem;
     border-radius : 1rem;
     background-color : ${(props) => props.theme.boxColor};
     cursor : pointer;

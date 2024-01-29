@@ -1,4 +1,4 @@
-import { ToDoBox, ToDoIpt, ToDoAddBtn, CategoryBox, ToDoLabel, CategoryBtn, BorderLine } from "../styles/ToDoListStyle";
+import { ToDoBox, ToDoIpt, ToDoAddBtn, CategoryBox, ToDoLabel, CategoryBtn, BorderLine, ErrorMsg } from "../styles/ToDoListStyle";
 import {useForm} from "react-hook-form";
 import { FormItfc, ToDoListItfc } from "../interface/toDointerface";
 import {  useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
@@ -6,7 +6,7 @@ import { Categories, categoyState, toDoState } from "../atom/toDoState";
 
 const CreateToDo = () => {
 
-    const {register, handleSubmit, setValue} = useForm<FormItfc>();
+    const {register, handleSubmit, setValue, formState : {errors}} = useForm<FormItfc>();
 
     const setToDos = useSetRecoilState(toDoState);
 
@@ -22,11 +22,11 @@ const CreateToDo = () => {
     
     // 유효한 경우 리스트 업데이트
     const isValid = ({toDo} : FormItfc) => {
-    setToDos((prevToDoList) => [{id : Date.now(), text : toDo, category : categoryState as ToDoListItfc["category"]}, ...prevToDoList]);
-    setValue("toDo", "");
-
-    // localStorage.setItem("toDoList", )
+        setToDos((prevToDoList) => [{id : Date.now(), text : toDo, category : categoryState as ToDoListItfc["category"]}, ...prevToDoList]);
+        setValue("toDo", "");
     }
+
+    console.log(errors);
 
     return (
         <>
@@ -42,11 +42,18 @@ const CreateToDo = () => {
                     <ToDoIpt
                     type="text"
                     placeholder="오늘의 할 일을 기록해보세요!"
-                    {...register("toDo")}
+                    {...register("toDo", {
+                        required : "할 일은 반드시 입력해야 합니다.",
+                        minLength : {
+                            value : 5,
+                            message : "할 일은 최소 5글자 이상이어야 합니다."
+                        }
+                    })}
                     />
                         <ToDoAddBtn>추가</ToDoAddBtn>
                     </ToDoLabel>
                 </form>
+                <ErrorMsg>{errors?.toDo?.message}</ErrorMsg>
             </ToDoBox>
         </>
     )
